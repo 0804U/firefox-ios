@@ -108,8 +108,8 @@ class TopTabsTest: BaseTestCase {
         // A different tab than home is open to do the proper checks
         navigator.openURL(path(forTestPage: "test-mozilla-org.html"))
         waitUntilPageLoad()
-        openNtabsFromTabTray(numTabs: 1)
         navigator.nowAt(BrowserTab)
+        navigator.performAction(Action.OpenNewTabFromTabTray)
         if !iPad() {
             waitforExistence(app.buttons["TabToolbar.tabsButton"],timeout: 5)
         }
