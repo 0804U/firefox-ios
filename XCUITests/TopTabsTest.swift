@@ -117,6 +117,7 @@ class TopTabsTest: BaseTestCase {
         // Close all tabs, undo it and check that the number of tabs is correct
         navigator.performAction(Action.AcceptRemovingAllTabs)
         app.buttons["Undo"].tap()
+        waitUntilPageLoad()
         navigator.nowAt(BrowserTab)
         if !iPad() {
             waitforExistence(app.buttons["TabToolbar.tabsButton"], timeout: 3)
@@ -300,7 +301,6 @@ class TopTabsTestIphone: IphoneOnlyTestCase {
         app.webViews.links.staticTexts[toastUrl["link"]!].press(forDuration: 1)
         waitforExistence(app.sheets.buttons["Open in New Tab"])
         app.sheets.buttons["Open in New Tab"].press(forDuration: 1)
-        waitforExistence(app.buttons["Switch"])
         app.buttons["Switch"].tap()
 
         // Check that the tab has changed
@@ -318,7 +318,6 @@ class TopTabsTestIphone: IphoneOnlyTestCase {
         app.webViews.links[toastUrl["link"]!].press(forDuration: 1)
         waitforExistence(app.sheets.buttons["Open in New Private Tab"])
         app.sheets.buttons["Open in New Private Tab"].press(forDuration: 1)
-        waitforExistence(app.buttons["Switch"])
         app.buttons["Switch"].tap()
 
         // Check that the tab has changed
