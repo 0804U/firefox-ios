@@ -120,7 +120,7 @@ class TopTabsTest: BaseTestCase {
         waitUntilPageLoad()
         navigator.nowAt(BrowserTab)
         if !iPad() {
-            waitforExistence(app.buttons["TabToolbar.tabsButton"], timeout: 3)
+            waitforExistence(app.buttons["TabToolbar.tabsButton"], timeout: 5)
         }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
         waitforExistence(app.collectionViews.cells[urlLabel])
