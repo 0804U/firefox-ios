@@ -109,8 +109,9 @@ class TopTabsTest: BaseTestCase {
         navigator.openURL(path(forTestPage: "test-mozilla-org.html"))
         waitUntilPageLoad()
         openNtabsFromTabTray(numTabs: 1)
+        navigator.nowAt(BrowserTab)
         if !iPad() {
-            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+            waitforExistence(app.buttons["TabToolbar.tabsButton"],timeout: 5)
         }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
 
@@ -121,8 +122,9 @@ class TopTabsTest: BaseTestCase {
         navigator.nowAt(BrowserTab)
         if !iPad() {
             waitforExistence(app.buttons["TabToolbar.tabsButton"], timeout: 5)
+            navigator.goto(TabTrayLongPressMenu)
         }
-        checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
+        checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 3)
         waitforExistence(app.collectionViews.cells[urlLabel])
     }
 
