@@ -12,6 +12,7 @@ class PhotonActionSheetTest: BaseTestCase {
         navigator.performAction(Action.PinToTopSitesPAM)
 
         // Navigate to topsites to verify that the site has been pinned
+        navigator.nowAt(BrowserTab)
         navigator.goto(NewTabScreen)
 
         // Verify that the site is pinned to top

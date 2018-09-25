@@ -202,30 +202,32 @@ class TopTabsTest: BaseTestCase {
     func testLongTapTabCounter() {
         if !iPad() {
             // Long tap on Tab Counter should show the correct options
+            waitforExistence(app.buttons["Show Tabs"])
             app.buttons["Show Tabs"].press(forDuration: 1)
-            waitforExistence(app.buttons["toolbarTabButtonLongPress.newTab"])
-            XCTAssertTrue(app.buttons["toolbarTabButtonLongPress.newTab"].exists)
-            XCTAssertTrue(app.buttons["toolbarTabButtonLongPress.newPrivateTab"].exists)
-            XCTAssertTrue(app.buttons["toolbarTabButtonLongPress.closeTab"].exists)
+            waitforExistence(app.cells["quick_action_new_tab"])
+            XCTAssertTrue(app.cells["quick_action_new_tab"].exists)
+            XCTAssertTrue(app.cells["tab_close"].exists)
 
             // Open New Tab
-            app.buttons["toolbarTabButtonLongPress.newTab"].tap()
+            app.cells["quick_action_new_tab"].tap()
             checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
             app.collectionViews.cells["home"].firstMatch.tap()
 
-            // Open Private Tab
+            // Close tab
             navigator.nowAt(HomePanelsScreen)
+            waitforExistence(app.buttons["Show Tabs"])
             app.buttons["Show Tabs"].press(forDuration: 1)
-            waitforExistence(app.buttons["toolbarTabButtonLongPress.newTab"])
-            app.buttons["toolbarTabButtonLongPress.newPrivateTab"].tap()
+            waitforExistence(app.cells["quick_action_new_tab"])
+            app.cells["tab_close"].tap()
             checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 1)
 
-            // Close tab
-            navigator.performAction(Action.OpenNewTabFromTabTray)
+            // Go to Private Mode
+            app.collectionViews.cells["home"].firstMatch.tap()
             navigator.nowAt(HomePanelsScreen)
+            waitforExistence(app.buttons["Show Tabs"])
             app.buttons["Show Tabs"].press(forDuration: 1)
-            waitforExistence(app.buttons["toolbarTabButtonLongPress.newTab"])
-            app.buttons["toolbarTabButtonLongPress.closeTab"].tap()
+            waitforExistence(app.cells["nav-tabcounter"])
+            app.cells["nav-tabcounter"].tap()
             checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 1)
         }
     }
