@@ -119,7 +119,7 @@ class TopTabsTest: BaseTestCase {
         app.buttons["Undo"].tap()
         navigator.nowAt(BrowserTab)
         if !iPad() {
-            waitforExistence(app.buttons["TabToolbar.tabsButton"])
+            waitforExistence(app.buttons["TabToolbar.tabsButton"], timeout: 3)
         }
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
         waitforExistence(app.collectionViews.cells[urlLabel])
@@ -131,6 +131,7 @@ class TopTabsTest: BaseTestCase {
         navigator.openURL(path(forTestPage: "test-mozilla-org.html"))
         waitUntilPageLoad()
         openNtabsFromTabTray(numTabs: 1)
+        waitforExistence(app.buttons["TabToolbar.tabsButton"], timeout: 3)
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
 
         // Close all tabs, undo it and check that the number of tabs is correct
