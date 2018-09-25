@@ -131,9 +131,6 @@ class TopTabsTest: BaseTestCase {
         navigator.openURL(path(forTestPage: "test-mozilla-org.html"))
         waitUntilPageLoad()
         openNtabsFromTabTray(numTabs: 1)
-        navigator.goto(TabTray)
-
-        waitforExistence(app.collectionViews.cells[urlLabel])
         checkNumberOfTabsExpectedToBeOpen(expectedNumberOfTabsOpen: 2)
 
         // Close all tabs, undo it and check that the number of tabs is correct
