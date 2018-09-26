@@ -15,6 +15,7 @@ class SaveLoginTest: BaseTestCase {
     private func saveLogin() {
         navigator.openURL(testLoginPage)
         waitUntilPageLoad()
+        waitforExistence(app.buttons["submit"])
         app.buttons["submit"].tap()
         app.buttons["SaveLoginPrompt.saveLoginButton"].tap()
     }
